@@ -55,11 +55,19 @@ public class BootstrapData implements CommandLineRunner {
         Publisher ecoPubSaved = publisherRepository.save(ecoPub);
 
         //Setting association between author and books
+        //Set books under Authors
         ericSaved.getBooks().add(dddSaved);
         rodSaved.getBooks().add(noEJBSaved);
 
+        //Set authors under Books
+        dddSaved.getAuthors().add(ericSaved);
+        noEJBSaved.getAuthors().add(rodSaved);
+
+        //Set books under Publications
         uniPubSaved.getBooks().add(dddSaved);
         uniPubSaved.getBooks().add(noEJBSaved);
+
+        //Set publishers for Books
         dddSaved.setPublisher(uniPubSaved);
         noEJBSaved.setPublisher(uniPubSaved);
 
